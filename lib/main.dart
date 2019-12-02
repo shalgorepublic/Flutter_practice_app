@@ -13,6 +13,10 @@ class MyApp extends StatelessWidget {
 
       title: "My App",
       home: new HomePage(),
+      theme: new ThemeData(
+        primarySwatch: Colors.green,
+        accentColor: Colors.red
+      ),
     );
   }
 }
@@ -44,10 +48,6 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[ 
             new Text(myText,style: new TextStyle(color: Colors.pink,fontSize: 25),),
-            new RaisedButton(onPressed: _changeText,
-            color: Colors.pink,
-            textColor: Colors.white,
-            child: new Text("Click me",style: new TextStyle(fontWeight:FontWeight.bold,fontSize: 20.0),))
           ],
         ),
       ),
@@ -62,6 +62,10 @@ class _HomePageState extends State<HomePage> {
         title: new Text("Home Page"),
       ),
       body: _bodyWidget(),
+      floatingActionButton: new FloatingActionButton(
+        child: new Icon(Icons.add),
+        onPressed: _changeText,
+      ),
     );
   }
 }
