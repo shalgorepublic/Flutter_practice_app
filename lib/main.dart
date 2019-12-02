@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main(){
+void main() {
   runApp(new MyApp());
 }
 
@@ -10,23 +10,25 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
 
       title: "My App",
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new  Text("Home Page first"),
-        ),
-        body: new Container(child:  new Text("Helo World",),),
-      )
+      home: new HomePage(),
     );
   }
 }
-class App extends StatefulWidget {
+
+class HomePage extends StatefulWidget {
   @override
-  _AppState createState() => _AppState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _AppState extends State<App> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: new AppBar(
+        title: new Text("Home Page"),
+      ),
+      body: new Center(child: new Text("Helo Statefull Widget"),),
+    );
   }
 }
+
