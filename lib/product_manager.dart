@@ -12,6 +12,7 @@ class ProductManager extends StatefulWidget {
 
 class _ProductManagerState extends State<ProductManager> {
   List<String> _products = [];
+  var productFlag = false;
 
   @override
   void initState() {
@@ -28,6 +29,7 @@ class _ProductManagerState extends State<ProductManager> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             new TextField(
+              style: TextStyle(color: Colors.red, fontWeight: FontWeight.w300),
               controller: widget.myController,
               obscureText: true,
               decoration: InputDecoration(
@@ -35,30 +37,43 @@ class _ProductManagerState extends State<ProductManager> {
                 labelText: 'Enter Product',
               ),
             ),
-            Text(
-              'length of products : '+'${_products.length}',
+            Container(
+              child:
+              Text(
+              'Products quantity : ' + '${_products.length}',
               style: TextStyle(
                 fontSize: 20.0,
               ),
             ),
+            ),
             new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   RaisedButton(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text("Add Product"),
-                    color: Colors.pink,
+                    color: Colors.green,
                     textColor: Colors.white,
                     onPressed: () {
                       setState(() {
-                        _products.add(widget.myController.text);
-                        print(_products);
+                        if(widget.myController.text.length>0) {
+                          _products.add(widget.myController.text);
+                          productFlag = false;
+                        }
+                        if(widget.myController.text.length == 0){
+                          setState(() {
+                            productFlag = true;
+                          });
+                        }
+                        print(productFlag);
                         print(widget.myController.text);
                       });
                     },
                   ),
                   RaisedButton(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text("Remove Product"),
-                    color: Colors.orange,
+                    color: Colors.red,
                     textColor: Colors.white,
                     onPressed: () {
                       setState(() {
@@ -70,7 +85,17 @@ class _ProductManagerState extends State<ProductManager> {
                       });
                     },
                   ),
+                 // productFlag == true ?
+
                 ]),
+           if( productFlag == true)
+            Text(
+              'please add product name',
+              style: TextStyle(
+                fontSize: 14.0,
+                color: Colors.red
+              ),
+            ),
           ],
         ),
       ),
