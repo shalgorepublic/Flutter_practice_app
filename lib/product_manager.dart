@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import './products.dart';
 
 class ProductManager extends StatefulWidget {
-  String startingProduct='';
   TextEditingController myController = new TextEditingController();
 
   ProductManager();
@@ -36,26 +35,34 @@ class _ProductManagerState extends State<ProductManager> {
                 labelText: 'Enter Product',
               ),
             ),
+            Text(
+              'length of products : '+'${_products.length}',
+              style: TextStyle(
+                fontSize: 20.0,
+              ),
+            ),
             new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RaisedButton(
                     child: Text("Add Product"),
+                    color: Colors.pink,
+                    textColor: Colors.white,
                     onPressed: () {
                       setState(() {
                         _products.add(widget.myController.text);
                         print(_products);
                         print(widget.myController.text);
-
                       });
                     },
                   ),
-
                   RaisedButton(
                     child: Text("Remove Product"),
+                    color: Colors.orange,
+                    textColor: Colors.white,
                     onPressed: () {
                       setState(() {
-                        if(_products.length >= 1) {
+                        if (_products.length >= 1) {
                           _products.remove(_products[_products.length - 1]);
                         }
                         print(_products);
@@ -66,11 +73,8 @@ class _ProductManagerState extends State<ProductManager> {
                 ]),
           ],
         ),
-
       ),
-      Products(_products
-      )
-    ]
-    );
+      Expanded(child: Products(_products))
+    ]);
   }
 }
